@@ -14,6 +14,6 @@ router.put("/update/id", usuarioController.updateUserController);
 //rotas DELETE
 router.delete("/remove/:id", usuarioController.deleteUserController);
 router.delete("/removeAddress", usuarioController.removeUserAddressController);
-router.delete("/removeFavProduct/", usuarioController.removeUserFavProductController);
+router.delete("/removeFavProduct", usuarioController.removeUserFavProductController);
 
 module.exports = router;
