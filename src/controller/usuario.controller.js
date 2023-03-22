@@ -55,11 +55,12 @@ const updateUserController = async (req, res) => {
 const deleteUserController = async (req, res) => {
     try {
         const usuario = await usuarioService.removeUserService(req.params.id);
-        if (usuario.deletedCount > 0) {
-            return res.status(200).send({ Message: `Usuário excluído com sucesso.` });
-        } else {
-            return res.status(404).send({ Message: `Usuário não encontrado.` });
-        }
+        return res.status(200).send({ Message: `Usuário excluído com sucesso.` });
+        // if (usuario.deletedCount > 0) {
+        //     return res.status(200).send({ Message: `Usuário excluído com sucesso.` });
+        // } else {
+        //     return res.status(404).send({ Message: `Usuário não encontrado.` });
+        // }
     } catch (e) {
         console.log(`Erro: ${e.message}`);
         return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
