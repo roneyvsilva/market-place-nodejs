@@ -4,7 +4,7 @@ const findUserByIdService = (id) => {
     return Usuario.findById(id);
 }
 
-const findAllService = () => {
+const findAllUserService = () => {
     return Usuario.find();
 }
 
@@ -38,7 +38,7 @@ const removeUserFavProductService = (id) => {
 
 module.exports = {
     findUserByIdService,
-    findAllService,
+    findAllUserService,
     createUserService,
     updateUserService,
     removeUserService,
