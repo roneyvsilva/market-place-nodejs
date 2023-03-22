@@ -10,7 +10,7 @@ router.post("/create", usuarioController.createUserController);
 router.post("/addAddress/:id", usuarioController.addUserAddressController);
 router.post("/addFavProduct/:id", usuarioController.addUserFavProductController);
 // rotas PUT
-router.put("/update/id", usuarioController.updateUserController);
+router.put("/update/:id", usuarioController.updateUserController);
 //rotas DELETE
 router.delete("/remove/:id", usuarioController.deleteUserController);
 router.delete("/removeAddress", usuarioController.removeUserAddressController);
