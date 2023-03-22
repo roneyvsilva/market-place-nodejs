@@ -10,12 +10,12 @@ const UsuarioSchema = new mongoose.Schema({
         numero: { type: Number, required: true },
         complemento: { type: String, required: false },
         cep: { type: String, required: true },
-        createAt: { type: Date, required: true }
+        createAt: { type: Date, required: true, default: Date.now() }
     }],
-    createAt: { type: Date, required: true },
+    createAt: { type: Date, required: true, default: Date.now() },
     produtosFavoritos: [{
         _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "produtos" },
-        createAt: { type: Date, required: true }
+        createAt: { type: Date, required: true, default: Date.now() }
     }],
     admin: { type: Boolean, required: true, default: false }
 })
