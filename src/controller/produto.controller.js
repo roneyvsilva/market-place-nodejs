@@ -53,9 +53,9 @@ const addCategoriaProdutoController = async (req, res) => {
 const removeCategoriaProdutoController = async (req, res) => {
     try {
         req.body.createAt = new Date();
-        const categoria = await produtoService.removeCategoriaProdutoService(req.body);
+        const categoria = await produtoService.removeCategoriaProdutoService(req.params.id, req.body);
         if (categoria.value != null) {
-            res.status(201).send({ message: `Categoria removida do produto com sucesso.` });
+            res.status(200).send({ message: `Categoria removida do produto com sucesso.` });
         } else {
             res.status(400).send({ message: `Algo de errado com a categoria. Categoria não adicionado.` });
         }

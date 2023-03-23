@@ -31,15 +31,15 @@ const addCategoriaProdutoService = async (id, categoria) => {
     );
 }
 
-const removeCategoriaProdutoService = async (categoria) => {
+const removeCategoriaProdutoService = async (id, categoria) => {
     return Produto.findOneAndUpdate(
         {
-            _id: categoria.id
+            _id: id
         },
         {
             $pull: {
                 categorias: {
-                    _id: categoria.idCategoria
+                    _id: categoria._id
                 }
             }
         },
