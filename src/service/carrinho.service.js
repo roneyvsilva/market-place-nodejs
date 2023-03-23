@@ -12,7 +12,7 @@ const createCarrinhoService = (body) => {
     return Carrinho.create(body);
 }
 
-const addCarrinhoCarrinhoService = (id, produto) => {
+const addProdutoCarrinhoService = (id, produto) => {
     return Carrinho.findOneAndUpdate(
         {
             _id: id
@@ -31,7 +31,7 @@ const addCarrinhoCarrinhoService = (id, produto) => {
     );
 }
 
-const removeCarrinhoCarrinhoService = (id, produto) => {
+const removeProdutoCarrinhoService = (id, produto) => {
     return Carrinho.findOneAndUpdate(
         {
             _id: id
@@ -64,6 +64,6 @@ module.exports = {
     createCarrinhoService,
     updateCarrinhoService,
     deleteCarrinhoService,
-    addCarrinhoCarrinhoService,
-    removeCarrinhoCarrinhoService
+    addProdutoCarrinhoService,
+    removeProdutoCarrinhoService
 }

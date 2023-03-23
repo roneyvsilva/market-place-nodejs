@@ -69,7 +69,6 @@ const deleteUserController = async (req, res) => {
 
 const addUserAddressController = async (req, res) => {
     try {
-        req.body.createdAt = new Date();
         const endereco = await usuarioService.addUserAddressService(req.params.id, req.body);
         if (endereco.value != null) {
             res.status(201).send({ message: `Endereço adicionado ao usuário com sucesso.` });
@@ -84,7 +83,7 @@ const addUserAddressController = async (req, res) => {
 
 const removeUserAddressController = async (req, res) => {
     try {
-        const usuario = await usuarioService.removeUserAddressService(req.body.id, req.body.enderecoId);
+        const usuario = await usuarioService.removeUserAddressService(req.body.id, req.body);
         let encontrou = false;
 
         usuario.value.enderecos.map((valor, chave) => {
@@ -106,6 +105,12 @@ const removeUserAddressController = async (req, res) => {
 
 const addUserFavProductController = async (req, res) => {
     try {
+        const usuario = await usuarioService.addUserFavProductService(req.params.id, req.body);
+        if (usuario.value != null) {
+            res.status(201).send({ message: `Produto favorito adicionado ao usuário com sucesso.` });
+        } else {
+            res.status(400).send({ message: `Algo de errado com o produto favorito. Produto favorito não adicionado.` });
+        }
 
     } catch (e) {
         console.log(`Erro: ${e.message}`);
@@ -115,6 +120,13 @@ const addUserFavProductController = async (req, res) => {
 
 const removeUserFavProductController = async (req, res) => {
     try {
+        const usuario = await usuarioService.removeUserFavProductService(req.params.id, req.body);
+        console.log(usuario);
+        if (usuario.value != null) {
+            res.status(200).send({ message: `Produto favorito removido do usuário com sucesso.` });
+        } else {
+            res.status(400).send({ message: `Algo de errado com o produto favorito. Produto favorito não removido.` });
+        }
 
     } catch (e) {
         console.log(`Erro: ${e.message}`);
