@@ -25,7 +25,7 @@ const createProductController = async (req, res) => {
     try {
         const body = {
             ...req.body,
-            userId: req.userId,
+            //userId: req.userId,
             createAt: new Date()
         }
         return res.status(201).send(await produtoService.createProductService(body));
@@ -57,7 +57,7 @@ const removeCategoriaProdutoController = async (req, res) => {
         if (categoria.value != null) {
             res.status(200).send({ message: `Categoria removida do produto com sucesso.` });
         } else {
-            res.status(400).send({ message: `Algo de errado com a categoria. Categoria não adicionado.` });
+            res.status(400).send({ message: `Algo de errado com a categoria. Categoria não removida.` });
         }
     } catch (e) {
         console.log(`Erro: ${e.message}`);

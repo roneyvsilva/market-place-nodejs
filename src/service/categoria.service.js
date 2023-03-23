@@ -1,22 +1,22 @@
 const Categoria = require("../model/Categoria");
 
-const findCategoriaByIdService = async (id) => {
+const findCategoriaByIdService = (id) => {
     return Categoria.findById(id);
 }
 
-const findAllCategoriaService = async () => {
+const findAllCategoriaService = () => {
     return Categoria.find();
 }
 
-const createCategoriaService = async (body) => {
+const createCategoriaService = (body) => {
     return Categoria.create(body);
 }
 
-const updateCategoriaService = async (id, body) => {
+const updateCategoriaService = (id, body) => {
     return Categoria.findByIdAndUpdate(id, body, { returnDocument: "after" });
 }
 
-const deleteCategoriaService = async (id) => {
+const deleteCategoriaService = (id) => {
     return Categoria.findByIdAndRemove(id);
 }
 

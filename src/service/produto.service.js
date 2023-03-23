@@ -1,18 +1,18 @@
 const Produto = require("../model/Produto");
 
-const findProductByIdService = async (id) => {
+const findProductByIdService = (id) => {
     return Produto.findById(id);
 }
 
-const findAllProductService = async () => {
+const findAllProductService = () => {
     return Produto.find();
 }
 
-const createProductService = async (body) => {
+const createProductService = (body) => {
     return Produto.create(body);
 }
 
-const addCategoriaProdutoService = async (id, categoria) => {
+const addCategoriaProdutoService = (id, categoria) => {
     return Produto.findOneAndUpdate(
         {
             _id: id
@@ -31,7 +31,7 @@ const addCategoriaProdutoService = async (id, categoria) => {
     );
 }
 
-const removeCategoriaProdutoService = async (id, categoria) => {
+const removeCategoriaProdutoService = (id, categoria) => {
     return Produto.findOneAndUpdate(
         {
             _id: id
@@ -49,11 +49,11 @@ const removeCategoriaProdutoService = async (id, categoria) => {
     );
 }
 
-const updateProductService = async (id, body) => {
+const updateProductService = (id, body) => {
     return Produto.findByIdAndUpdate(id, body, { returnDocument: "after" });
 }
 
-const deleteProductService = async (id) => {
+const deleteProductService = (id) => {
     return Produto.findByIdAndRemove(id);
 }
 

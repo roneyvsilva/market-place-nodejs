@@ -7,6 +7,7 @@ const usuarioRouter = require("./src/router/usuario.router"); // arquivo de rota
 const authRouter = require("./src/router/auth.router"); // arquivo de rotas de autenticação
 const produtoRouter = require("./src/router/produto.router"); // arquivo de rotas do produto
 const categoriaRouter = require("./src/router/categoria.router"); // arquivo de rotas da categoria
+const carrinhoRouter = require("./src/router/carrinho.router"); // arquivo de rotas do carrinho
 
 app.use(express.json());
 
@@ -15,6 +16,7 @@ connectDB(); // conectando com o banco de dados
 app.use("/usuario", usuarioRouter); // chamando as rotas do usuário
 app.use("/produto", produtoRouter); // chamando as rotas do produto
 app.use("/categoria", categoriaRouter); // chamando as rotas da categoria
+app.use("/carrinho", carrinhoRouter); // chamando as rotas do carrinho
 app.get("/", (req, res) => {
     res.send({ message: "Bem vindo ao Market Place..." });
 });
