@@ -35,6 +35,36 @@ const createProductController = async (req, res) => {
     }
 }
 
+const addCategoriaProdutoController = async (req, res) => {
+    try {
+        req.body.createAt = new Date();
+        const categoria = await produtoService.addCategoriaProdutoService(req.params.id, req.body);
+        if (categoria.value != null) {
+            res.status(201).send({ message: `Categoria adicionada ao produto com sucesso.` });
+        } else {
+            res.status(400).send({ message: `Algo de errado com a categoria. Categoria não adicionado.` });
+        }
+    } catch (e) {
+        console.log(`Erro: ${e.message}`);
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
+    }
+}
+
+const removeCategoriaProdutoController = async (req, res) => {
+    try {
+        req.body.createAt = new Date();
+        const categoria = await produtoService.removeCategoriaProdutoService(req.body);
+        if (categoria.value != null) {
+            res.status(201).send({ message: `Categoria removida do produto com sucesso.` });
+        } else {
+            res.status(400).send({ message: `Algo de errado com a categoria. Categoria não adicionado.` });
+        }
+    } catch (e) {
+        console.log(`Erro: ${e.message}`);
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
+    }
+}
+
 const updateProductController = async (req, res) => {
     try {
         return res.status(200).send(await produtoService.updateProductService(req.params.id, req.body));
@@ -58,5 +88,7 @@ module.exports = {
     findAllProductController,
     createProductController,
     updateProductController,
-    deleteProductController
+    deleteProductController,
+    addCategoriaProdutoController,
+    removeCategoriaProdutoController
 }

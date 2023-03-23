@@ -12,6 +12,43 @@ const createProductService = async (body) => {
     return Produto.create(body);
 }
 
+const addCategoriaProdutoService = async (id, categoria) => {
+    return Produto.findOneAndUpdate(
+        {
+            _id: id
+        },
+        {
+            $push: {
+                categorias: {
+                    _id: categoria._id,
+                    createdAt: categoria.createdAt
+                }
+            }
+        },
+        {
+            rawResult: true
+        }
+    );
+}
+
+const removeCategoriaProdutoService = async (categoria) => {
+    return Produto.findOneAndUpdate(
+        {
+            _id: categoria.id
+        },
+        {
+            $pull: {
+                categorias: {
+                    _id: categoria.idCategoria
+                }
+            }
+        },
+        {
+            rawResult: true
+        }
+    );
+}
+
 const updateProductService = async (id, body) => {
     return Produto.findByIdAndUpdate(id, body, { returnDocument: "after" });
 }
@@ -26,5 +63,7 @@ module.exports = {
     findAllProductService,
     createProductService,
     updateProductService,
-    deleteProductService
+    deleteProductService,
+    addCategoriaProdutoService,
+    removeCategoriaProdutoService
 }
