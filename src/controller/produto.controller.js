@@ -25,8 +25,7 @@ const createProductController = async (req, res) => {
     try {
         const body = {
             ...req.body,
-            //userId: req.userId,
-            createAt: new Date()
+            //userId: req.userId,            
         }
         return res.status(201).send(await produtoService.createProductService(body));
     } catch (e) {
@@ -37,7 +36,6 @@ const createProductController = async (req, res) => {
 
 const addCategoriaProdutoController = async (req, res) => {
     try {
-        req.body.createAt = new Date();
         const categoria = await produtoService.addCategoriaProdutoService(req.params.id, req.body);
         if (categoria.value != null) {
             res.status(201).send({ message: `Categoria adicionada ao produto com sucesso.` });
@@ -52,7 +50,6 @@ const addCategoriaProdutoController = async (req, res) => {
 
 const removeCategoriaProdutoController = async (req, res) => {
     try {
-        req.body.createAt = new Date();
         const categoria = await produtoService.removeCategoriaProdutoService(req.params.id, req.body);
         if (categoria.value != null) {
             res.status(200).send({ message: `Categoria removida do produto com sucesso.` });

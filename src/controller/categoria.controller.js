@@ -23,11 +23,7 @@ const findAllCategoriaController = async (req, res) => {
 
 const createCategoriaController = async (req, res) => {
     try {
-        const body = {
-            ...req.body,
-            createAt: new Date()
-        }
-        return res.status(201).send(await categoriaService.createCategoriaService(body));
+        return res.status(201).send(await categoriaService.createCategoriaService(req.body));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
         return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });

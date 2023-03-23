@@ -25,8 +25,7 @@ const createCarrinhoController = async (req, res) => {
     try {
         const body = {
             ...req.body,
-            userId: req.userId,
-            createAt: new Date()
+            userId: req.userId
         }
         return res.status(201).send(await carrinhoService.createCarrinhoService(body));
     } catch (e) {
@@ -37,7 +36,6 @@ const createCarrinhoController = async (req, res) => {
 
 const addProdutoCarrinhoController = async (req, res) => {
     try {
-        req.body.createAt = new Date();
         const categoria = await carrinhoService.addProdutoCarrinhoService(req.params.id, req.body);
         if (categoria.value != null) {
             res.status(201).send({ message: `Produto adicionado ao carrinho com sucesso.` });
@@ -52,7 +50,6 @@ const addProdutoCarrinhoController = async (req, res) => {
 
 const removeProdutoCarrinhoController = async (req, res) => {
     try {
-        req.body.createAt = new Date();
         const categoria = await carrinhoService.removeProdutoCarrinhoService(req.params.id, req.body);
         if (categoria.value != null) {
             res.status(200).send({ message: `Produto removido do produto com sucesso.` });

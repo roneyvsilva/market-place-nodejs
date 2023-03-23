@@ -8,8 +8,9 @@ const ProdutoSchema = new mongoose.Schema({
     codigoBarra: { type: Number, required: true, unique: true },
     categorias: [{
         _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "categorias" },
-        createAt: { type: Date, required: true }
-    }]
+        createAt: { type: Date, required: true, default: Date.now }
+    }],
+    createAt: { type: Date, required: true, default: Date.now }
 });
 
 const Produto = mongoose.model("produtos", ProdutoSchema);
