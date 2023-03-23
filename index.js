@@ -8,6 +8,7 @@ const authRouter = require("./src/router/auth.router"); // arquivo de rotas de a
 const produtoRouter = require("./src/router/produto.router"); // arquivo de rotas do produto
 const categoriaRouter = require("./src/router/categoria.router"); // arquivo de rotas da categoria
 const carrinhoRouter = require("./src/router/carrinho.router"); // arquivo de rotas do carrinho
+const pedidoRouter = require("./src/router/pedido.router"); // arquivo de rotas do pedido
 
 app.use(express.json());
 
@@ -17,6 +18,7 @@ app.use("/usuario", usuarioRouter); // chamando as rotas do usuário
 app.use("/produto", produtoRouter); // chamando as rotas do produto
 app.use("/categoria", categoriaRouter); // chamando as rotas da categoria
 app.use("/carrinho", carrinhoRouter); // chamando as rotas do carrinho
+app.use("/pedido", pedidoRouter); // chamando as rotas do pedido
 app.get("/", (req, res) => {
     res.send({ message: "Bem vindo ao Market Place..." });
 });
