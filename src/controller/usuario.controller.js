@@ -10,10 +10,10 @@ const findUserByIdController = async (req, res) => {
         return res.status(200).send(usuario);
     } catch (e) {
         if (e.kind == "ObjectId") {
-            return res.status(400).send({ Message: `ID informado está incorreto.` });
+            return res.status(400).send({ message: `ID informado está incorreto.` });
         }
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -22,7 +22,7 @@ const findAllUsersController = async (req, res) => {
         return res.status(200).send(await usuarioService.findAllUserService());
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -30,12 +30,12 @@ const createUserController = async (req, res) => {
     try {
         const body = req.body;
         if (!body.nome) {
-            return res.status(400).send({ Message: `O campo 'nome' não foi informado.` });
+            return res.status(400).send({ message: `O campo 'nome' não foi informado.` });
         }
         return res.status(201).send(await usuarioService.createUserService(body));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -43,12 +43,12 @@ const updateUserController = async (req, res) => {
     try {
         const body = req.body;
         if (!body.nome) {
-            return res.status(400).send({ Message: `O campo 'nome' não foi informado.` });
+            return res.status(400).send({ message: `O campo 'nome' não foi informado.` });
         }
         return res.status(200).send(await usuarioService.updateUserService(req.params.id, body));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -57,13 +57,13 @@ const deleteUserController = async (req, res) => {
         const usuario = await usuarioService.removeUserService(req.params.id);
 
         if (usuario != null) {
-            return res.status(200).send({ Message: `Usuário excluído com sucesso.` });
+            return res.status(200).send({ message: `Usuário excluído com sucesso.` });
         } else {
-            return res.status(404).send({ Message: `Usuário não encontrado.` });
+            return res.status(404).send({ message: `Usuário não encontrado.` });
         }
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -72,13 +72,13 @@ const addUserAddressController = async (req, res) => {
         req.body.createdAt = new Date();
         const endereco = await usuarioService.addUserAddressService(req.params.id, req.body);
         if (endereco.value != null) {
-            res.status(201).send({ Message: `Endereço adicionado ao usuário com sucesso.` });
+            res.status(201).send({ message: `Endereço adicionado ao usuário com sucesso.` });
         } else {
-            res.status(400).send({ Message: `Algo de errado com o endereço. Endereço não adicionado.` });
+            res.status(400).send({ message: `Algo de errado com o endereço. Endereço não adicionado.` });
         }
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -94,13 +94,13 @@ const removeUserAddressController = async (req, res) => {
         });
 
         if (encontrou) {
-            res.status(200).send({ Message: `Endereço removido do usuário com sucesso.` });
+            res.status(200).send({ message: `Endereço removido do usuário com sucesso.` });
         } else {
-            res.status(400).send({ Message: `Algo de errado com o endereço. Endereço não removido.` });
+            res.status(400).send({ message: `Algo de errado com o endereço. Endereço não removido.` });
         }
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -109,7 +109,7 @@ const addUserFavProductController = async (req, res) => {
 
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
@@ -118,7 +118,7 @@ const removeUserFavProductController = async (req, res) => {
 
     } catch (e) {
         console.log(`Erro: ${e.message}`);
-        return res.status(500).send({ Message: `Erro inesperado. Tente novamente!` });
+        return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
     }
 };
 
