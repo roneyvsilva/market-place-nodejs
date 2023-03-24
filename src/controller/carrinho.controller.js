@@ -14,7 +14,7 @@ const findCarrinhoByIdController = async (req, res) => {
 
 const findAllCarrinhoController = async (req, res) => {
     try {
-        return res.status(200).send(await carrinhoService.findAllCarrinhoService());
+        return res.status(200).send(await carrinhoService.findAllCarrinhoService(req.query.limit, req.query.offset));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
         return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });

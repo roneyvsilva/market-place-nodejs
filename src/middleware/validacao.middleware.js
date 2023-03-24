@@ -20,7 +20,7 @@ const validaUsuario = (req, res, next) => {
     return next();
 }
 
-const validaProduto = (req, res) => {
+const validaProduto = (req, res, next) => {
 
     let erros = [];
     if (!req.body.nome) {
@@ -45,7 +45,7 @@ const validaProduto = (req, res) => {
     return next();
 }
 
-const validaCategoria = (req, res) => {
+const validaCategoria = (req, res, next) => {
 
     let erros = [];
     if (!req.body.nome) {
@@ -55,7 +55,7 @@ const validaCategoria = (req, res) => {
     return next();
 }
 
-const validaPedido = (req, res) => {
+const validaPedido = (req, res, next) => {
 
     let erros = [];
     if (!req.body.precoTotal) {
@@ -74,7 +74,7 @@ const validaPedido = (req, res) => {
     return next();
 }
 
-const validaCarrinho = (req, res) => {
+const validaCarrinho = (req, res, next) => {
 
     let erros = [];
     if (!req.body.precoTotal) {
@@ -82,6 +82,21 @@ const validaCarrinho = (req, res) => {
     }
     if (!req.body.frete) {
         erros.push("frete");
+    }
+
+    if (erros.length > 0) {
+        return res.status(400).send({ message: `O(s) campo(s) [${erros}] precisa(m) ser preenchido(s).` });
+    }
+    return next();
+}
+
+const validaLogin = (req, res, next) => {
+    let erros = [];
+    if (!req.body.email) {
+        erros.push("email");
+    }
+    if (!req.body.senha) {
+        erros.push("senha");
     }
 
     if (erros.length > 0) {
@@ -98,12 +113,12 @@ const validaId = (req, res, next) => {
     return next();
 }
 
-
 module.exports = {
     validaUsuario,
     validaProduto,
     validaCategoria,
     validaPedido,
     validaCarrinho,
-    validaId
+    validaId,
+    validaLogin
 };

@@ -14,7 +14,7 @@ const findPedidoByIdController = async (req, res) => {
 
 const findAllPedidoController = async (req, res) => {
     try {
-        return res.status(200).send(await pedidoService.findAllPedidoService());
+        return res.status(200).send(await pedidoService.findAllPedidoService(req.query.limit, req.query.offset));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
         return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });

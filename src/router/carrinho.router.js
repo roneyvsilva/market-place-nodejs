@@ -2,10 +2,11 @@ const router = require("express").Router();
 const carrinhoController = require("../controller/carrinho.controller");
 const authMiddleware = require("../middleware/auth.middleware");
 const { validaCarrinho, validaId } = require("../middleware/validacao.middleware");
+const paginacao = require("../middleware/paginacao.middleware");
 
 // rotas GET
 router.get("/findById/:id", authMiddleware, validaId, carrinhoController.findCarrinhoByIdController);
-router.get("/findAll", authMiddleware, carrinhoController.findAllCarrinhoController);
+router.get("/findAll", authMiddleware, paginacao, carrinhoController.findAllCarrinhoController);
 // rotas POST
 router.post("/create", authMiddleware, validaCarrinho, carrinhoController.createCarrinhoController);
 router.post("/addProduto/:id", authMiddleware, validaId, carrinhoController.addProdutoCarrinhoController);
