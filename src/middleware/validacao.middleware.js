@@ -62,7 +62,7 @@ const validaPedido = (req, res) => {
     if (!req.body.frete) {
         erros.push("frete");
     }
-    if (!req.body.concluido) {
+    if (req.body.concluido == undefined) {
         erros.push("userId");
     }
 
