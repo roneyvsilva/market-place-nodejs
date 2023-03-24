@@ -20,6 +20,29 @@ const validaUsuario = (req, res, next) => {
     return next();
 }
 
+const validaEndereco = (req, res, next) => {
+    let erros = [];
+
+    req.body.map((value, key) => {
+        if (!value.rua) {
+            erros.push(`'[${key + 1}] - rua'`);
+        }
+        if (!value.numero) {
+            erros.push(`'[${key + 1}] - numero'`);
+        }
+        if (!value.cep) {
+            erros.push(`'[${key + 1}] - cep'`);
+        }
+    });
+
+    if (erros.length > 0) {
+        return res.status(400).send({ message: `O(s) campo(s) [${erros}] precisa(m) ser preenchido(s).` });
+    }
+
+    return next();
+}
+
+
 const validaProduto = (req, res, next) => {
 
     let erros = [];
@@ -105,9 +128,38 @@ const validaLogin = (req, res, next) => {
     return next();
 }
 
-const validaId = (req, res, next) => {
+const validaIdBody = (req, res, next) => {
+    if (!ObjectId.isValid(req.body._id)) {
+        return res.status(400).send({ message: `O ID não possui os padrões necessários.` });
+    }
+    return next();
+}
+
+const validaIdParams = (req, res, next) => {
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).send({ message: `O ID não possui os padrões necessários.` });
+    }
+    return next();
+}
+
+const validaProdutoFK = (req, res, next) => {
+    let erros = [];
+
+    req.body.produtos.map((value, key) => {
+        if (!value._id) {
+            erros.push(`'[${key + 1}] - _id'`);
+        } else {
+            if (!ObjectId.isValid(value._id)) {
+                erros.push(`'[${key + 1}] - _id (tipo inválido)'`);
+            }
+        }
+        if (!value.quantidade) {
+            erros.push(`'[${key + 1}] - quantidade'`);
+        }
+    });
+
+    if (erros.length > 0) {
+        return res.status(400).send({ message: `O(s) campo(s) [${erros}] precisa(m) ser preenchido(s).` });
     }
 
     return next();
@@ -119,6 +171,9 @@ module.exports = {
     validaCategoria,
     validaPedido,
     validaCarrinho,
-    validaId,
-    validaLogin
+    validaIdBody,
+    validaIdParams,
+    validaLogin,
+    validaEndereco,
+    validaProdutoFK
 };
