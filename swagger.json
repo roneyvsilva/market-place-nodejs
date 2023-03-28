@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Market Place",
+        "description": "API de Market Place completa contendo CRUD de diversos assuntos",
+        "contact": {
+            "name": "Roney V. Silva",
+            "email": "roneyvsilva@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "API de testes local"
+        }
+    ],
+    "paths": {
+        "/usuario/findAll": {
+            "get": {
+                "summary": "Lista todos usuários da API",
+                "description": "Rota responsável por listar todos os usuários da nossa API",
+                "tags": [
+                    "Usuario"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok. Execução com sucesso"
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação. Problema com o token"
+                    },
+                    "404": {
+                        "description": "Not found. Nenhum usuário encontrato"
+                    },
+                    "500": {
+                        "description": "Internal server error. Algo de errado aconteceu no servidor."
+                    }
+                }
+            }
+        },
+        "/usuario/find": {
+            "get": {
+                "summary": "Lista o usuário da API com o Id informado",
+                "description": "Rota responsável por localizar um usuário da nossa API com o Id informado",
+                "tags": [
+                    "Usuario"
+                ]
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "market-place",
-    "dateExported": "2023-03-23T23:50:29.236Z",
+    "dateExported": "2023-03-28T14:14:03.066Z",
     "version": "1.1",
     "folders": [
         {
@@ -57,9 +57,13 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-03-22T11:14:10.229Z",
-            "modified": "2023-03-22T11:17:05.908Z",
+            "modified": "2023-03-24T10:15:57.740Z",
             "headers": [],
             "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
             "tests": []
         },
         {
@@ -125,12 +129,12 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-03-22T11:21:20.577Z",
-            "modified": "2023-03-22T23:45:38.603Z",
+            "modified": "2023-03-24T00:17:10.047Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nome\": \"Roney 2\",\n  \"email\": \"roneyvsilva2@gmail.com\",\n  \"senha\": \"123\",\n  \"imagem\": \"foto.jpg\"\n}",
+                "raw": "{\n  \"nome\": \"Roney 3\",\n  \"email\": \"roneyvsilva3@gmail.com\",\n  \"senha\": \"123\",\n  \"imagem\": \"foto.jpg\",\n  \"admin\" : \"false\"\n}",
                 "form": []
             },
             "tests": []
@@ -241,13 +245,17 @@
             "method": "POST",
             "sortNum": 50000,
             "created": "2023-03-22T22:04:56.216Z",
-            "modified": "2023-03-22T22:46:53.531Z",
+            "modified": "2023-03-24T10:47:17.231Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n  \"rua\": \"Alga Vermelha\",\r\n  \"numero\": 200,\r\n  // \"complemento\": \"BL 2 AP 1106\",\r\n  \"cep\": \"34742-260\"\r\n}",
+                "raw": "[{\n  \"rua\": \"Alga Vermelha\",\n   \"numero\": 200,\n  // \"complemento\": \"BL 2 AP 1106\",\n  \"cep\": \"34742-260\"\n},\n{\n  \"rua\": \"Alga Vermelha 2\",\n  \"numero\": 400,\n  // \"complemento\": \"BL 2 AP 1106\",\n   \"cep\": \"34742-260\"\n}\n]",
                 "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
             },
             "tests": []
         },
@@ -392,13 +400,24 @@
             "colId": "46f038e8-3ccc-4b7b-ba2c-dfb7100f456a",
             "containerId": "d2d28d68-0937-43e9-8767-b8fc14bf792f",
             "name": "findAll",
-            "url": "{{baseURL}}{{port}}/categoria/findAll",
+            "url": "{{baseURL}}{{port}}/categoria/findAll?limit=2&offset=0",
             "method": "GET",
             "sortNum": 80000,
             "created": "2023-03-23T17:08:23.906Z",
-            "modified": "2023-03-23T17:08:47.109Z",
+            "modified": "2023-03-24T10:04:53.369Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "isPath": false
+                }
+            ],
             "auth": {
                 "type": "bearer",
                 "bearer": "{{token}}"
@@ -486,12 +505,12 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2023-03-23T13:16:05.551Z",
-            "modified": "2023-03-23T20:25:12.339Z",
+            "modified": "2023-03-24T09:58:26.198Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nome\": \"Heineken\",\n  \"descricao\": \"Cerveja Heineken 600ml\",\n  \"precoUnitario\": 11.99,\n  \"imagem\": \"foto_produto02.jpg\",\n  \"codigoBarra\": 1234567890123,\n  \"categorias\": [\n    {\n        \"_id\": \"641c9f2ee8d4f1012d551752\"\n    }\n    ]\n}",
+                "raw": "{\n    \"nome\": \"Brahma 3\",\n    \"descricao\": \"Cerveja Brahma 600ml\",\n    \"precoUnitario\": 5.99,\n    \"imagem\": \"foto_produto02.jpg\",\n    \"codigoBarra\": 1234567890126\n}",
                 "form": []
             },
             "auth": {
