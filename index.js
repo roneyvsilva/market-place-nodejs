@@ -1,5 +1,7 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
+
 const connectDB = require("./src/database/database"); // arquivo de conexão com o banco de dados
 const app = express();
 const port = 3000;
@@ -10,7 +12,14 @@ const categoriaRouter = require("./src/router/categoria.router"); // arquivo de 
 const carrinhoRouter = require("./src/router/carrinho.router"); // arquivo de rotas do carrinho
 const pedidoRouter = require("./src/router/pedido.router"); // arquivo de rotas do pedido
 const docsRouter = require("./src/router/docs.router"); // arquivo de rotas de docs
+
 app.use(express.json());
+app.use(cors(
+    {
+        origin: ["localhost:3001", "localhost:3002"],
+        methods: ["GET", "POST", "PUT", "DELETE"]
+    }
+));
 
 connectDB(); // conectando com o banco de dados
 
