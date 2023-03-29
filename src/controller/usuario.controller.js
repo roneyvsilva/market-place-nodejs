@@ -28,11 +28,7 @@ const findAllUsersController = async (req, res) => {
 
 const createUserController = async (req, res) => {
     try {
-        const body = req.body;
-        if (!body.nome) {
-            return res.status(400).send({ message: `O campo 'nome' não foi informado.` });
-        }
-        return res.status(201).send(await usuarioService.createUserService(body));
+        return res.status(201).send(await usuarioService.createUserService(req.body));
     } catch (e) {
         console.log(`Erro: ${e.message}`);
         return res.status(500).send({ message: `Erro inesperado. Tente novamente!` });
@@ -83,7 +79,7 @@ const addUserAddressController = async (req, res) => {
 
 const removeUserAddressController = async (req, res) => {
     try {
-        const usuario = await usuarioService.removeUserAddressService(req.body.id, req.body);
+        const usuario = await usuarioService.removeUserAddressService(req.body.id, req.body.enderecoId);
         let encontrou = false;
 
         usuario.value.enderecos.map((valor, chave) => {
@@ -121,7 +117,6 @@ const addUserFavProductController = async (req, res) => {
 const removeUserFavProductController = async (req, res) => {
     try {
         const usuario = await usuarioService.removeUserFavProductService(req.params.id, req.body);
-        console.log(usuario);
         if (usuario.value != null) {
             res.status(200).send({ message: `Produto favorito removido do usuário com sucesso.` });
         } else {

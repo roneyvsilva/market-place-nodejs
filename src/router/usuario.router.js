@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const usuarioController = require("../controller/usuario.controller");
 const authMiddleware = require("../middleware/auth.middleware");
-const { validaUsuario, validaEndereco, validaIdParams, validaIdBody } = require("../middleware/validacao.middleware");
+const { validaUsuario, validaEndereco, validaIdParams, validaIdBody, validaProdutoFK } = require("../middleware/validacao.middleware");
 const paginacao = require("../middleware/paginacao.middleware");
 
 // rotas GET
@@ -11,9 +11,9 @@ router.get("/findAll", authMiddleware, paginacao, usuarioController.findAllUsers
 // rotas POST
 router.post("/create", validaUsuario, usuarioController.createUserController);
 router.post("/addAddress/:id", authMiddleware, validaIdParams, validaEndereco, usuarioController.addUserAddressController);
-router.post("/addFavProduct/:id", authMiddleware, validaIdParams, validaIdBody, usuarioController.addUserFavProductController);
+router.post("/addFavProduct/:id", authMiddleware, validaIdParams, validaIdBody, validaProdutoFK, usuarioController.addUserFavProductController);
 // rotas PUT
-router.put("/update/:id", authMiddleware, validaIdParams, validaEndereco, usuarioController.updateUserController);
+router.put("/update/:id", authMiddleware, validaIdParams, validaEndereco, validaProdutoFK, usuarioController.updateUserController);
 //rotas DELETE
 router.delete("/remove/:id", authMiddleware, validaIdParams, usuarioController.deleteUserController);
 router.delete("/removeAddress", authMiddleware, usuarioController.removeUserAddressController);

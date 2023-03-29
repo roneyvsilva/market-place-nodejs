@@ -36,7 +36,7 @@ const addUserAddressService = (id, endereco) => {
     );
 }
 
-const removeUserAddressService = (id, endereco) => {
+const removeUserAddressService = (id, enderecoId) => {
     return Usuario.findOneAndUpdate(
         {
             _id: id
@@ -44,7 +44,7 @@ const removeUserAddressService = (id, endereco) => {
         {
             $pull: {
                 enderecos: {
-                    _id: endereco.Id
+                    _id: enderecoId
                 }
             }
         },
@@ -80,7 +80,7 @@ const removeUserFavProductService = (id, produto) => {
         {
             $pull: {
                 produtosFavoritos: {
-                    _id: produto._Id
+                    _id: produto._id
                 }
             }
         },
